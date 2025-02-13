@@ -1,6 +1,10 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit"
-    },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tabSize": 2,
+  "css.lint.unknownAtRules": "ignore"
 }
