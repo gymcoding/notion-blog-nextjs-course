@@ -1,0 +1,43 @@
+---
+description: App Router 구조, 파일 명명 규칙, 컴포넌트 규칙 등을 상세히 정의
+globs: app/**/*.{ts,tsx}
+---
+이 디렉토리는 Next.js의 App Router 구조를 따릅니다.
+
+  1. 파일 명명 규칙:
+    - page.tsx: 라우트의 UI 컴포넌트 (예: app/blog/page.tsx)
+    - layout.tsx: 공유 레이아웃 컴포넌트 (예: app/blog/layout.tsx)
+    - loading.tsx: 로딩 UI 컴포넌트 (예: app/blog/loading.tsx)
+    - error.tsx: 에러 UI 컴포넌트 (예: app/blog/error.tsx)
+    - not-found.tsx: 404 페이지 컴포넌트
+    - route.ts: API 엔드포인트 (예: app/api/posts/route.ts)
+    - template.tsx: 리렌더링이 필요한 레이아웃
+
+  2. 디렉토리 구조:
+    - (group)/: 라우트 그룹화 (예: app/(auth)/login/page.tsx)
+    - [param]/: 동적 라우트 (예: app/posts/[id]/page.tsx)
+    - @modal/: 병렬 라우트 (예: app/@modal/login/page.tsx)
+    - _components/: 페이지 섹션 컴포넌트
+
+  3. 컴포넌트 규칙:
+    - 모든 컴포넌트는 기본적으로 Server Component입니다
+    - Client Component가 필요한 경우에만 'use client' 지시문을 사용합니다
+    - Client Component는 가능한 한 leaf 컴포넌트에서만 사용합니다
+    - 데이터 페칭은 가능한 한 Server Component에서 수행합니다
+
+  4. 메타데이터 규칙:
+    - metadata 객체나 generateMetadata 함수를 사용합니다
+    - 동적 메타데이터는 generateMetadata를 사용합니다
+    - robots.txt, sitemap.xml은 app 디렉토리 루트에 위치시킵니다
+
+  5. API 라우트 규칙:
+    - route.ts 파일에서는 HTTP 메서드별로 함수를 export 합니다
+    - 응답은 NextResponse를 사용합니다
+    - API 엔드포인트는 RESTful 규칙을 따릅니다
+    - 에러 처리는 try-catch로 감싸고 적절한 상태 코드를 반환합니다
+
+  6. 성능 최적화:
+    - 이미지는 next/image를 사용합니다
+    - 폰트는 next/font를 사용합니다
+    - 동적 import를 활용한 코드 스플리팅을 적극 활용합니다
+    - 가능한 경우 Streaming과 Suspense를 사용합니다 

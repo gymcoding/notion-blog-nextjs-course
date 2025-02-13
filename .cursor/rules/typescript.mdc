@@ -1,0 +1,58 @@
+---
+description: 타입 정의, 인터페이스 규칙, 타입 가드 등 TypeScript 관련 상세 규칙 제공
+globs: **/*.{ts,tsx}
+---
+  TypeScript 파일은 다음 규칙을 준수합니다:
+
+  1. 타입 정의 규칙:
+    - any 타입 사용 금지 (strict 모드 필수)
+    - unknown 타입 활용 (타입 안정성)
+    - 명시적인 타입 정의 사용
+    - 타입 추론이 명확한 경우는 타입 생략 가능
+    - 유니온 타입 활용 (예: type Status = 'idle' | 'loading' | 'success' | 'error')
+
+  2. 인터페이스/타입 규칙:
+    - 인터페이스는 객체 타입에 사용
+    - 타입 별칭은 유니온/인터섹션에 사용
+    - 일관된 네이밍 컨벤션 (PascalCase)
+    - 제네릭 타입 활용
+    - readonly 적극 활용
+
+  3. 타입 가드:
+    - is 타입 가드 함수 활용
+    - instanceof 연산자 활용
+    - in 연산자 활용
+    - 사용자 정의 타입 가드 작성
+
+  4. 유틸리티 타입 활용:
+    - Partial<T>: 선택적 프로퍼티
+    - Required<T>: 필수 프로퍼티
+    - Pick<T, K>: 프로퍼티 선택
+    - Omit<T, K>: 프로퍼티 제외
+    - Record<K, T>: 키-값 매핑
+
+  5. 타입 단언:
+    - as 문법 대신 타입 가드 선호
+    - non-null 단언은 확실한 경우만 사용
+    - const 단언 활용 (as const)
+    - 이중 단언 금지
+
+  6. 제네릭:
+    - 의미 있는 타입 파라미터 이름 사용 (T, U, K, V)
+    - 제약 조건 활용 (extends)
+    - 기본 타입 지정 (= default)
+    - 조건부 타입 활용 (삼항 연산자)
+
+  7. 모듈 시스템:
+    - import/export 타입 명시
+    - 네임스페이스 대신 모듈 사용
+    - 순환 참조 금지
+    - 배럴 파일 활용 (index.ts)
+
+  8. tsconfig 설정:
+    - strict: true
+    - noImplicitAny: true
+    - strictNullChecks: true
+    - noUnusedLocals: true
+    - noUnusedParameters: true
+    - esModuleInterop: true 
