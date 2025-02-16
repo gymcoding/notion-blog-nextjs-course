@@ -1,29 +1,13 @@
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import Header from '@/components/layouts/Header';
+import Footer from '@/components/layouts/Footer';
 
 export default function Home() {
   return (
     // min-h-screen으로 전체 높이 보장, grid로 3개 영역 분할
     <div className="flex min-h-screen flex-col">
       {/* Header 영역 */}
-      <header className="sticky top-0 z-50 border-b">
-        <div className="container mx-auto flex h-14 items-center px-4">
-          <a href="#" className="text-xl font-semibold">
-            <span className="font-bold">짐코딩 블로그</span>
-          </a>
-          <nav className="ml-auto flex items-center gap-4">
-            <a href="#" className="hover:text-primary font-medium">
-              홈
-            </a>
-            <a href="#" className="hover:text-primary font-medium">
-              블로그
-            </a>
-            <a href="#" className="hover:text-primary font-medium">
-              소개
-            </a>
-          </nav>
-        </div>
-      </header>
-
+      <Header />
       {/* Main 영역 */}
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">
@@ -51,13 +35,7 @@ export default function Home() {
       </main>
 
       {/* Footer 영역 */}
-      <footer className="border-t">
-        <div className="container mx-auto flex h-14 items-center justify-center">
-          <p className="text-muted-foreground text-sm">
-            Built with Next.js, Tailwind CSS and shadcn/ui
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
