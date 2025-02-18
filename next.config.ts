@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
   // experimental: {
   //   typedRoutes: true,
   // },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'picsum.photos',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

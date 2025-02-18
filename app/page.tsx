@@ -1,8 +1,36 @@
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { Youtube, Github, BookOpen, Instagram, Megaphone, HandshakeIcon } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { PostCard } from '@/components/features/blog/PostCard';
+
+const mockPosts = [
+  {
+    id: '1',
+    title: 'Next.js 13으로 블로그 만들기',
+    description: 'Next.js 13과 Notion API를 활용하여 개인 블로그를 만드는 방법을 알아봅니다.',
+    coverImage: 'https://picsum.photos/800/400',
+    tags: [
+      { id: '1', name: 'Next.js' },
+      { id: '2', name: 'React' },
+    ],
+    authors: '짐코딩',
+    date: '2024-02-01',
+  },
+  {
+    id: '2',
+    title: 'TypeScript 기초 다지기',
+    description: 'TypeScript의 기본 문법과 실전에서 자주 사용되는 패턴들을 살펴봅니다.',
+    coverImage: 'https://picsum.photos/800/401',
+    tags: [
+      { id: '3', name: 'TypeScript' },
+      { id: '4', name: 'JavaScript' },
+    ],
+    authors: '짐코딩',
+    date: '2024-01-15',
+  },
+];
 
 const mockTags = [
   { name: '전체', count: 20 },
@@ -95,19 +123,8 @@ export default function Home() {
 
           {/* 블로그 카드 그리드 */}
           <div className="grid gap-4">
-            {/* 블로그 카드 반복 */}
-            {[1, 2, 3].map((i) => (
-              <Link href={`/blog/${i}`} key={i}>
-                <Card key={i}>
-                  <CardHeader>
-                    <CardTitle>블로그 제목 {i}</CardTitle>
-                    <CardDescription>
-                      이것은 블로그 포스트에 대한 간단한 설명입니다. 여러 줄의 텍스트가 있을 수
-                      있습니다.
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
+            {mockPosts.map((post) => (
+              <PostCard key={post.id} post={post} />
             ))}
           </div>
         </div>
