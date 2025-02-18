@@ -1,6 +1,7 @@
 export interface NotionTag {
   id: string;
   name: string;
+  count: number;
 }
 
 export interface NotionPost {
