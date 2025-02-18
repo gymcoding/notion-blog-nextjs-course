@@ -1,12 +1,38 @@
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import Link from 'next/link';
+
+const mockTags = [
+  { name: '전체', count: 20 },
+  { name: 'HTML', count: 10 },
+  { name: 'CSS', count: 5 },
+  { name: 'JavaScript', count: 3 },
+  { name: 'React', count: 3 },
+  { name: 'Next.js', count: 3 },
+];
+
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
         {/* 좌측 사이드바 */}
         <aside>
-          <Card>태그목록</Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>태그 목록</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-3">
+                {mockTags.map((tag) => (
+                  <Link href={`?tag=${tag.name}`} key={tag.name}>
+                    <div className="hover:bg-muted-foreground/10 text-muted-foreground flex items-center justify-between rounded-md p-1.5 text-sm transition-colors">
+                      <span>{tag.name}</span>
+                      <span>{tag.count}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </aside>
         <div className="space-y-8">
           {/* 섹션 제목 */}
