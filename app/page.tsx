@@ -67,7 +67,7 @@ const contactItems = [
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
         {/* 좌측 사이드바 */}
         <aside>

@@ -17,7 +17,7 @@ const menuItems = [
 
 export default function AboutLayout({ children }: AboutLayoutProps) {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container py-8">
       <div className="flex gap-8">
         {/* 사이드바 */}
         <aside className="w-64 shrink-0">

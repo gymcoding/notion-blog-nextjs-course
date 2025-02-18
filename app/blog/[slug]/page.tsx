@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 export default function BlogPost() {
   return (
-    <article className="container mx-auto px-4 py-12">
+    <article className="container py-12">
       {/* 블로그 헤더 */}
       <div className="space-y-4">
         <div className="space-y-2">
