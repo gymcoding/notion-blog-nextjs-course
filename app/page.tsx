@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import Link from 'next/link';
-import { Youtube, Github, BookOpen, Instagram } from 'lucide-react';
+import { Youtube, Github, BookOpen, Instagram, Megaphone, HandshakeIcon } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
@@ -29,6 +29,39 @@ const socialLinks = [
   {
     icon: Instagram,
     href: 'https://www.instagram.com/gymcoding',
+  },
+];
+
+const contactItems = [
+  {
+    icon: Megaphone,
+    title: '광고 및 제휴',
+    description: '브랜드 홍보, 컨텐츠 제작, 협업 제안',
+    mailto: {
+      email: 'bruce.lean17@gmail.com',
+      subject: '[광고/제휴] 제안',
+      body: '브랜드/제품명:\n제안 내용:\n기간:\n예산:',
+    },
+  },
+  {
+    icon: BookOpen,
+    title: '강의 문의',
+    description: '기술 강의, 워크샵, 세미나 진행',
+    mailto: {
+      email: 'bruce.lean17@gmail.com',
+      subject: '[강의] 문의',
+      body: '강의 주제:\n예상 인원:\n희망 일정:\n문의 내용:',
+    },
+  },
+  {
+    icon: HandshakeIcon,
+    title: '기타 문의',
+    description: '채용, 인터뷰, 기타 협업 제안',
+    mailto: {
+      email: 'bruce.lean17@gmail.com',
+      subject: '[기타] 문의',
+      body: '문의 종류:\n문의 내용:',
+    },
   },
 ];
 
@@ -79,7 +112,7 @@ export default function Home() {
           </div>
         </div>
         {/* 우측 사이드바 */}
-        <aside>
+        <aside className="flex flex-col gap-6">
           <Card>
             <CardContent className="pt-6">
               <div className="space-y-4">
@@ -121,6 +154,32 @@ export default function Home() {
                 <p className="bg-primary/10 rounded p-2 text-center text-sm">
                   코딩 교육 크리에이터 ✨
                 </p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>문의하기</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {contactItems.map((item, index) => (
+                  <a
+                    key={index}
+                    href={`mailto:${item.mailto.email}?subject=${encodeURIComponent(
+                      item.mailto.subject
+                    )}&body=${encodeURIComponent(item.mailto.body)}`}
+                    className="group bg-primary/5 hover:bg-muted flex items-start gap-4 rounded-lg p-3 transition-colors"
+                  >
+                    <div className="bg-primary/20 text-primary flex shrink-0 items-center justify-center rounded-md p-1.5">
+                      <item.icon className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium">{item.title}</h3>
+                      <p className="text-muted-foreground text-xs">{item.description}</p>
+                    </div>
+                  </a>
+                ))}
               </div>
             </CardContent>
           </Card>
