@@ -8,30 +8,105 @@ import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/ca
 interface TableOfContentsItem {
   id: string;
   title: string;
+  items?: TableOfContentsItem[];
 }
 
 const mockTableOfContents: TableOfContentsItem[] = [
   {
-    id: '1',
+    id: 'intro',
+    title: '소개',
+    items: [],
+  },
+  {
+    id: 'getting-started',
     title: '시작하기',
+    items: [
+      {
+        id: 'prerequisites',
+        title: '사전 준비사항',
+        items: [
+          {
+            id: 'node-installation',
+            title: 'Node.js 설치',
+          },
+          {
+            id: 'npm-setup',
+            title: 'NPM 설정',
+          },
+        ],
+      },
+      {
+        id: 'project-setup',
+        title: '프로젝트 설정',
+        items: [
+          {
+            id: 'create-project',
+            title: '프로젝트 생성',
+          },
+          {
+            id: 'folder-structure',
+            title: '폴더 구조',
+          },
+        ],
+      },
+    ],
   },
   {
-    id: '2',
+    id: 'shadcn-ui-setup',
     title: 'Shadcn UI 설정하기',
-  },
-  {
-    id: '3',
-    title: '블로그 구조 설계',
-  },
-  {
-    id: '4',
-    title: '블로그 디자인',
-  },
-  {
-    id: '5',
-    title: '블로그 배포',
+    items: [
+      {
+        id: 'installation',
+        title: '설치 방법',
+        items: [
+          {
+            id: 'cli-installation',
+            title: 'CLI 도구 설치',
+          },
+          {
+            id: 'component-setup',
+            title: '컴포넌트 설정',
+          },
+        ],
+      },
+      {
+        id: 'configuration',
+        title: '환경 설정',
+        items: [
+          {
+            id: 'theme-setup',
+            title: '테마 설정',
+          },
+          {
+            id: 'typography',
+            title: '타이포그래피',
+          },
+        ],
+      },
+    ],
   },
 ];
+
+function TableOfContentsLink({ item }: { item: TableOfContentsItem }) {
+  return (
+    <div className="space-y-2">
+      <Link
+        key={item.id}
+        href={`#${item.id}`}
+        className={`hover:text-foreground text-muted-foreground block font-medium transition-colors`}
+      >
+        {item.title}
+      </Link>
+      {item.items && item.items.length > 0 && (
+        <div className="space-y-2 pl-4">
+          {item.items.map((subItem) => (
+            <TableOfContentsLink key={subItem.id} item={subItem} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function BlogPost() {
   return (
@@ -67,6 +142,91 @@ export default function BlogPost() {
 
           {/* 블로그 본문 */}
           <div className="prose prose-slate dark:prose-invert max-w-none">
+            <p className="lead">
+              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
+              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
+            </p>
+
+            <h2>시작하기</h2>
+            <p>
+              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
+              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
+              제공합니다.
+            </p>
+
+            <h2>Shadcn UI 설정하기</h2>
+            <p>
+              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
+              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
+            </p>
+            <p className="lead">
+              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
+              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
+            </p>
+
+            <h2>시작하기</h2>
+            <p>
+              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
+              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
+              제공합니다.
+            </p>
+
+            <h2>Shadcn UI 설정하기</h2>
+            <p>
+              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
+              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
+            </p>
+            <p className="lead">
+              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
+              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
+            </p>
+
+            <h2>시작하기</h2>
+            <p>
+              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
+              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
+              제공합니다.
+            </p>
+
+            <h2>Shadcn UI 설정하기</h2>
+            <p>
+              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
+              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
+            </p>
+            <p className="lead">
+              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
+              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
+            </p>
+
+            <h2>시작하기</h2>
+            <p>
+              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
+              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
+              제공합니다.
+            </p>
+
+            <h2>Shadcn UI 설정하기</h2>
+            <p>
+              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
+              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
+            </p>
+            <p className="lead">
+              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
+              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
+            </p>
+
+            <h2>시작하기</h2>
+            <p>
+              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
+              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
+              제공합니다.
+            </p>
+
+            <h2>Shadcn UI 설정하기</h2>
+            <p>
+              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
+              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
+            </p>
             <p className="lead">
               Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
               알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
@@ -122,17 +282,11 @@ export default function BlogPost() {
         </section>
         <aside>
           <div>
-            <div className="bg-muted/20 space-y-4 rounded-lg p-6 backdrop-blur-sm">
+            <div className="bg-muted/60 space-y-4 rounded-lg p-6 backdrop-blur-sm">
               <h3 className="text-lg font-semibold">목차</h3>
               <nav className="space-y-3 text-sm">
                 {mockTableOfContents.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className={`hover:text-foreground text-muted-foreground block font-medium transition-colors`}
-                  >
-                    {item.title}
-                  </Link>
+                  <TableOfContentsLink key={item.id} item={item} />
                 ))}
               </nav>
             </div>
