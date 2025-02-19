@@ -30,6 +30,10 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
+
+  --header-height: 3.5rem;
+  --sticky-offset: 1.5rem;
+  --sticky-top: calc(var(--header-height) + var(--sticky-offset));
 }
 
 .dark {
