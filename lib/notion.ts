@@ -9,14 +9,28 @@ export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-export const getPublishedPosts = async (): Promise<Post[]> => {
+export const getPublishedPosts = async (tag?: string): Promise<Post[]> => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
-      property: 'Status',
-      select: {
-        equals: 'Published',
-      },
+      and: [
+        {
+          property: 'Status',
+          select: {
+            equals: 'Published',
+          },
+        },
+        ...(tag && tag !== '전체'
+          ? [
+              {
+                property: 'Tags',
+                multi_select: {
+                  contains: tag,
+                },
+              },
+            ]
+          : []),
+      ],
     },
     sorts: [
       {
@@ -25,8 +39,6 @@ export const getPublishedPosts = async (): Promise<Post[]> => {
       },
     ],
   });
-
-  console.log(response.results);
 
   return response.results
     .filter((page): page is PageObjectResponse => 'properties' in page)
