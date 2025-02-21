@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import type { Post } from '@/types/blog';
+import type { Post, TagFilterItem } from '@/types/blog';
 import type {
   PageObjectResponse,
   PersonUserObjectResponse,
@@ -71,4 +71,39 @@ export const getPublishedPosts = async (): Promise<Post[]> => {
             : page.id,
       };
     });
+};
+
+export const getTags = async (): Promise<TagFilterItem[]> => {
+  const posts = await getPublishedPosts();
+
+  // 모든 태그를 추출하고 각 태그의 출현 횟수를 계산
+  const tagCount = posts.reduce(
+    (acc, post) => {
+      post.tags?.forEach((tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+      });
+      return acc;
+    },
+    {} as Record<string, number>
+  );
+
+  // TagFilterItem 형식으로 변환
+  const tags: TagFilterItem[] = Object.entries(tagCount).map(([name, count]) => ({
+    id: name,
+    name,
+    count,
+  }));
+
+  // "전체" 태그 추가
+  tags.unshift({
+    id: 'all',
+    name: '전체',
+    count: posts.length,
+  });
+
+  // 태그 이름 기준으로 정렬 ("전체" 태그는 항상 첫 번째에 위치하도록 제외)
+  const [allTag, ...restTags] = tags;
+  const sortedTags = restTags.sort((a, b) => a.name.localeCompare(b.name));
+
+  return [allTag, ...sortedTags];
 };

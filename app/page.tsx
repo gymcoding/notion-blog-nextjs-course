@@ -10,26 +10,17 @@ import TagSection from '@/app/_components/TagSection';
 import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
 import Link from 'next/link';
-import { getPublishedPosts } from '@/lib/notion';
-
-const mockTags = [
-  { id: 'all', name: '전체', count: 20 },
-  { id: 'html', name: 'HTML', count: 10 },
-  { id: 'css', name: 'CSS', count: 5 },
-  { id: 'javascript', name: 'JavaScript', count: 3 },
-  { id: 'react', name: 'React', count: 3 },
-  { id: 'nextjs', name: 'Next.js', count: 3 },
-];
+import { getPublishedPosts, getTags } from '@/lib/notion';
 
 export default async function Home() {
-  const posts = await getPublishedPosts();
+  const [posts, tags] = await Promise.all([getPublishedPosts(), getTags()]);
 
   return (
     <div className="container py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
         {/* 좌측 사이드바 */}
         <aside>
-          <TagSection tags={mockTags} />
+          <TagSection tags={tags} />
         </aside>
         <div className="space-y-8">
           {/* 섹션 제목 */}
