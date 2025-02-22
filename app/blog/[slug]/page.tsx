@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { getPostBySlug } from '@/lib/notion';
 import { formatDate } from '@/lib/date';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 interface TableOfContentsItem {
   id: string;
@@ -152,75 +153,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <Separator className="my-8" />
 
           {/* 블로그 본문 */}
-          <div className="prose prose-slate dark:prose-invert max-w-none">
-            <p className="lead">
-              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
-              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
-            </p>
-
-            <h2>시작하기</h2>
-            <p>
-              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
-              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
-              제공합니다.
-            </p>
-
-            <h2>Shadcn UI 설정하기</h2>
-            <p>
-              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
-              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
-            </p>
-            <p className="lead">
-              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
-              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
-            </p>
-
-            <h2>시작하기</h2>
-            <p>
-              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
-              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
-              제공합니다.
-            </p>
-
-            <h2>Shadcn UI 설정하기</h2>
-            <p>
-              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
-              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
-            </p>
-            <p className="lead">
-              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
-              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
-            </p>
-
-            <h2>시작하기</h2>
-            <p>
-              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
-              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
-              제공합니다.
-            </p>
-
-            <h2>Shadcn UI 설정하기</h2>
-            <p>
-              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
-              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
-            </p>
-            <p className="lead">
-              Next.js와 Shadcn UI를 사용하여 모던하고 아름다운 블로그를 만드는 방법을
-              알아보겠습니다. 이 튜토리얼에서는 기본적인 설정부터 배포까지 전 과정을 다룹니다.
-            </p>
-
-            <h2>시작하기</h2>
-            <p>
-              Next.js는 React 기반의 풀스택 웹 프레임워크입니다. 서버 사이드 렌더링, 정적 사이트
-              생성 등 다양한 렌더링 전략을 제공하며, 개발자 경험을 극대화시켜주는 여러 기능들을
-              제공합니다.
-            </p>
-
-            <h2>Shadcn UI 설정하기</h2>
-            <p>
-              Shadcn UI는 재사용 가능한 컴포넌트 모음으로, 아름다운 디자인과 접근성을 모두 갖추고
-              있습니다. 컴포넌트를 직접 소유할 수 있어 커스터마이징이 자유롭다는 장점이 있습니다.
-            </p>
+          <div className="prose prose-neutral prose-sm dark:prose-invert max-w-none">
+            <MDXRemote source={markdown} />
           </div>
 
           <Separator className="my-16" />
