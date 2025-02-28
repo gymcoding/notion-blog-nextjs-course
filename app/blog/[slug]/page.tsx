@@ -10,7 +10,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
 import { compile } from '@mdx-js/mdx';
 import withSlugs from 'rehype-slug';
 import withToc from '@stefanprobst/rehype-extract-toc';
@@ -22,8 +21,6 @@ interface TocEntry {
   id?: string;
   children?: Array<TocEntry>;
 }
-
-type Toc = Array<TocEntry>;
 
 function TableOfContentsLink({ item }: { item: TocEntry }) {
   return (
@@ -99,13 +96,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <Separator className="my-8" />
 
           {/* 블로그 본문 */}
-          <div className="prose prose-neutral prose-sm dark:prose-invert prose-headings:scroll-mt-[var(--header-height)] max-w-none">
+          <div className="prose prose-neutral dark:prose-invert prose-headings:scroll-mt-[var(--header-height)] max-w-none">
             <MDXRemote
               source={markdown}
               options={{
                 mdxOptions: {
                   remarkPlugins: [remarkGfm],
-                  rehypePlugins: [rehypeSlug, rehypeSanitize, rehypePrettyCode],
+                  rehypePlugins: [withSlugs, rehypeSanitize, rehypePrettyCode],
                 },
               }}
             />
