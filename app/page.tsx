@@ -6,13 +6,17 @@ import Link from 'next/link';
 import { getPublishedPosts, getTags } from '@/lib/notion';
 import SortSelect from '@/app/_components/SortSelect';
 interface HomeProps {
-  searchParams: Promise<{ tag?: string }>;
+  searchParams: Promise<{ tag?: string; sort?: string }>;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { tag } = await searchParams;
+  const { tag, sort } = await searchParams;
   const selectedTag = tag || '전체';
-  const [posts, tags] = await Promise.all([getPublishedPosts(selectedTag), getTags()]);
+  const selectedSort = sort || 'latest';
+  const [posts, tags] = await Promise.all([
+    getPublishedPosts(selectedTag, selectedSort),
+    getTags(),
+  ]);
 
   console.log('posts: ', posts);
 

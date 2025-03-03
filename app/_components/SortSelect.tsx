@@ -7,10 +7,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 export default function SortSelect() {
   console.log('SortSelect');
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const sort = searchParams.get('sort') || 'latest';
+
+  const handleSort = (value: string) => {
+    console.log('value: ', value);
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('sort', value);
+
+    router.push(`?${params.toString()}`);
+  };
+
   return (
-    <Select defaultValue="latest">
+    <Select value={sort} onValueChange={handleSort}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="정렬 방식 선택" />
       </SelectTrigger>
