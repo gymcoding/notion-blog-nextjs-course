@@ -4,7 +4,7 @@ import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
 import Link from 'next/link';
 import { getPublishedPosts, getTags } from '@/lib/notion';
-import SortSelect from '@/app/_components/SortSelect';
+import SortSelect from '@/app/_components/client/SortSelect';
 interface HomeProps {
   searchParams: Promise<{ tag?: string; sort?: string }>;
 }
