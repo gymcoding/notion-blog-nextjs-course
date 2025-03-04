@@ -18,8 +18,6 @@ export default async function Home({ searchParams }: HomeProps) {
     getTags(),
   ]);
 
-  console.log('posts: ', posts);
-
   return (
     <div className="container py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
