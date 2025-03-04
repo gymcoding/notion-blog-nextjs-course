@@ -89,6 +89,7 @@ export const getPostBySlug = async (
 };
 
 export const getPublishedPosts = async (tag?: string, sort?: string): Promise<Post[]> => {
+  console.log('process.env.NOTION_DATABASE_ID: ', process.env.NOTION_DATABASE_ID);
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
