@@ -4,15 +4,15 @@ import Link from 'next/link';
 import { Post } from '@/types/blog';
 import { PostCard } from '@/components/features/blog/PostCard';
 import { useState, useEffect } from 'react';
-import { getPublishedPosts } from '@/lib/notion';
 
 export default function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const posts = await getPublishedPosts();
-      setPosts(posts);
+      const res = await fetch('/api/posts');
+      const data = await res.json();
+      setPosts(data.posts);
     };
     fetchPosts();
   }, []);
