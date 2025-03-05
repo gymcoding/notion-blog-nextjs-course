@@ -1,9 +1,9 @@
 import TagSection from '@/app/_components/TagSection';
 import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
-import { getTags } from '@/lib/notion';
+import { getTags, getPublishedPosts } from '@/lib/notion';
 import HeaderSection from '@/app/_components/HeaderSection';
-import PostListClient from '@/components/features/blog/PostList.client';
+import PostList from '@/components/features/blog/PostList';
 interface HomeProps {
   searchParams: Promise<{ tag?: string; sort?: string }>;
 }
@@ -11,24 +11,25 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
   const { tag, sort } = await searchParams;
   const selectedTag = tag || '전체';
-  // const selectedSort = sort || 'latest';
-  // const [tags] = await Promise.all([getTags()]);
+  const selectedSort = sort || 'latest';
 
-  // const [posts, tags] = await Promise.all([
-  //   getPublishedPosts(selectedTag, selectedSort),
-  //   getTags(),
-  // ]);
+  const [posts, tags] = await Promise.all([
+    getPublishedPosts(selectedTag, selectedSort),
+    getTags(),
+  ]);
 
   return (
     <div className="container py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
         {/* 좌측 사이드바 */}
-        <aside>{/* <TagSection tags={tags} selectedTag={selectedTag} /> */}</aside>
+        <aside>
+          <TagSection tags={tags} selectedTag={selectedTag} />
+        </aside>
         <div className="space-y-8">
           {/* 섹션 제목 */}
           <HeaderSection selectedTag={selectedTag} />
           {/* 블로그 카드 그리드 */}
-          <PostListClient />
+          <PostList posts={posts} />
         </div>
         {/* 우측 사이드바 */}
         <aside className="flex flex-col gap-6">
