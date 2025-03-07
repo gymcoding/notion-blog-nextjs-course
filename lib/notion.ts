@@ -89,9 +89,6 @@ export const getPostBySlug = async (
 };
 
 export const getPublishedPosts = async (tag?: string, sort?: string): Promise<Post[]> => {
-  // 개발 환경에서만 5초 딜레이 추가
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
