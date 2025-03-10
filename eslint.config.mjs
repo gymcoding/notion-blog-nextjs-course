@@ -24,7 +24,12 @@ const eslintConfig = [
     },
     rules: {
       // 여기에 추가적인 규칙을 설정할 수 있습니다
-      'no-unused-vars': 'warn',
+      'no-unused-vars': [
+        'warn',
+        {
+          args: 'none', // 함수 파라미터 미사용 변수 검사 비활성화
+        },
+      ],
       // 'no-console': 'warn',
     },
   },

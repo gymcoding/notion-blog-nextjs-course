@@ -6,8 +6,12 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
-import { createPostAction } from '@/app/actions/blog';
-export function PostForm() {
+
+interface PostFormProps {
+  createPostAction: (formData: FormData) => Promise<void>;
+}
+
+export function PostForm({ createPostAction }: PostFormProps) {
   return (
     <form action={createPostAction}>
       <Card className="mx-auto max-w-2xl">
