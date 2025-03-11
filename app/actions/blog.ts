@@ -9,7 +9,15 @@ const postSchema = z.object({
   content: z.string().min(10, { message: '내용은 최소 10자 이상 입력해주세요.' }),
 });
 
-export async function createPostAction(formData: FormData) {
+export interface PostFormState {
+  message: string;
+  errors?: {
+    title?: string[];
+    tag?: string[];
+    content?: string[];
+  };
+}
+export async function createPostAction(prevState: PostFormState, formData: FormData) {
   // const title = formData.get('title') as string;
   // const tag = formData.get('tag') as string;
   // const content = formData.get('content') as string;
