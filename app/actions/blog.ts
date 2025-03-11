@@ -9,6 +9,12 @@ const postSchema = z.object({
   content: z.string().min(10, { message: '내용은 최소 10자 이상 입력해주세요.' }),
 });
 
+export interface PostFormData {
+  title: string;
+  tag: string;
+  content: string;
+}
+
 export interface PostFormState {
   message: string;
   errors?: {
@@ -16,6 +22,7 @@ export interface PostFormState {
     tag?: string[];
     content?: string[];
   };
+  formData?: PostFormData;
 }
 export async function createPostAction(prevState: PostFormState, formData: FormData) {
   // const title = formData.get('title') as string;
@@ -24,16 +31,19 @@ export async function createPostAction(prevState: PostFormState, formData: FormD
 
   // const { title, tag, content } = Object.fromEntries(formData);
 
-  const validatedFields = postSchema.safeParse({
-    title: formData.get('title'),
-    tag: formData.get('tag'),
-    content: formData.get('content'),
-  });
+  const rawFormData = {
+    title: formData.get('title') as string,
+    tag: formData.get('tag') as string,
+    content: formData.get('content') as string,
+  };
+
+  const validatedFields = postSchema.safeParse(rawFormData);
 
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: '유효성 검사에 실패했습니다.',
+      formData: rawFormData,
     };
   }
   try {
@@ -52,6 +62,7 @@ export async function createPostAction(prevState: PostFormState, formData: FormD
     console.log(err);
     return {
       message: '블로그 포스트 생성에 실패했습니다.',
+      formData: rawFormData,
     };
   }
 }
