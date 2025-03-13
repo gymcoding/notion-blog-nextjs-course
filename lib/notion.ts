@@ -146,11 +146,17 @@ export const getPublishedPosts = unstable_cache(
       .filter((page): page is PageObjectResponse => 'properties' in page)
       .map(getPostMetadata);
 
+    console.log('posts: ', posts);
+
     return {
       posts,
       hasMore: response.has_more,
       nextCursor: response.next_cursor,
     };
+  },
+  ['posts'],
+  {
+    tags: ['posts'],
   }
 );
 
