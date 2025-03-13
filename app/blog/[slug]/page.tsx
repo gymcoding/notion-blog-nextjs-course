@@ -14,7 +14,7 @@ import { compile } from '@mdx-js/mdx';
 import withSlugs from 'rehype-slug';
 import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
-
+import GiscusComments from '@/components/GiscusComments';
 interface TocEntry {
   value: string;
   depth: number;
@@ -111,36 +111,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <Separator className="my-16" />
 
           {/* 이전/다음 포스트 네비게이션 */}
-          <nav className="grid grid-cols-2 gap-8">
-            <Link href="/blog/previous-post">
-              <Card className="group hover:bg-muted/50 transition-colors">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-base font-medium">
-                    <ChevronLeft className="h-4 w-4" />
-                    <span>시작하기</span>
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    Next.js를 시작하는 방법부터 프로젝트 구조, 기본 설정까지 상세히 알아봅니다.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-
-            <Link href="/blog/next-post" className="text-right">
-              <Card className="group hover:bg-muted/50 transition-colors">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-end gap-2 text-base font-medium">
-                    <span>심화 가이드</span>
-                    <ChevronRight className="h-4 w-4" />
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    Next.js의 고급 기능들을 활용하여 더 나은 웹 애플리케이션을 만드는 방법을
-                    소개합니다.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          </nav>
+          <GiscusComments />
         </section>
         <aside className="relative">
           <div className="sticky top-[var(--sticky-top)]">
