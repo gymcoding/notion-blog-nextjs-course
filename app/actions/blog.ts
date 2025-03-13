@@ -24,6 +24,7 @@ export interface PostFormState {
     content?: string[];
   };
   formData?: PostFormData;
+  success?: boolean;
 }
 export async function createPostAction(prevState: PostFormState, formData: FormData) {
   // const title = formData.get('title') as string;
@@ -55,6 +56,11 @@ export async function createPostAction(prevState: PostFormState, formData: FormD
       tag: tag,
       content: content,
     });
+    revalidateTag('posts');
+    return {
+      success: true,
+      message: '블로그 포스트가 성공적으로 생성되었습니다.',
+    };
   } catch (err) {
     return {
       message: '블로그 포스트 생성에 실패했습니다.',
@@ -62,6 +68,5 @@ export async function createPostAction(prevState: PostFormState, formData: FormD
     };
   }
   // revalidatePath('/');
-  revalidateTag('posts');
-  redirect('/');
+  // redirect('/');
 }
