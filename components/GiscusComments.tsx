@@ -1,7 +1,8 @@
 'use client';
 import Giscus from '@giscus/react';
-
+import { useTheme } from 'next-themes';
 export default function GiscusComments() {
+  const { theme } = useTheme();
   return (
     <Giscus
       repo="gymcoding/notion-blog-nextjs-giscus"
@@ -13,7 +14,7 @@ export default function GiscusComments() {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme="preferred_color_scheme"
+      theme={theme === 'dark' ? 'dark' : 'light'}
       lang="ko"
     />
   );
