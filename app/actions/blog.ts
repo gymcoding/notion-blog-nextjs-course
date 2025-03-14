@@ -3,7 +3,6 @@
 import { createPost } from '@/lib/notion';
 import { z } from 'zod';
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { getPublishedPosts } from '@/lib/notion';
 
 const postSchema = z.object({
@@ -64,6 +63,7 @@ export async function createPostAction(prevState: PostFormState, formData: FormD
       message: '블로그 포스트가 성공적으로 생성되었습니다.',
     };
   } catch (err) {
+    console.error(err);
     return {
       message: '블로그 포스트 생성에 실패했습니다.',
       formData: rawFormData,
