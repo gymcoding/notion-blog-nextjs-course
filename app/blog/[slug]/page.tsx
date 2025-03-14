@@ -13,6 +13,7 @@ import withSlugs from 'rehype-slug';
 import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
 import GiscusComments from '@/components/GiscusComments';
+import { notFound } from 'next/navigation';
 interface TocEntry {
   value: string;
   depth: number;
@@ -48,6 +49,10 @@ interface BlogPostProps {
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug } = await params;
   const { markdown, post } = await getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
 
   const { data } = await compile(markdown, {
     rehypePlugins: [
