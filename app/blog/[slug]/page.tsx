@@ -14,12 +14,23 @@ import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
 import GiscusComments from '@/components/GiscusComments';
 import { notFound } from 'next/navigation';
+import { getPublishedPosts } from '@/lib/notion';
+
 interface TocEntry {
   value: string;
   depth: number;
   id?: string;
   children?: Array<TocEntry>;
 }
+
+export const generateStaticParams = async () => {
+  const { posts } = await getPublishedPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+};
+
+export const revalidate = 60;
 
 function TableOfContentsLink({ item }: { item: TocEntry }) {
   return (

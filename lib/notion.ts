@@ -57,7 +57,7 @@ export const getPostBySlug = async (
   slug: string
 ): Promise<{
   markdown: string;
-  post: Post;
+  post: Post | null;
 }> => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
