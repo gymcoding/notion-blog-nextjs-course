@@ -9,7 +9,14 @@ export async function GET(request: NextRequest) {
   const startCursor = searchParams.get('startCursor') || undefined;
   const pageSize = Number(searchParams.get('pageSize')) || undefined;
 
+  console.log('API 요청 파라미터:', { tag, sort, startCursor, pageSize });
+
   const response = await getPublishedPosts({ tag, sort, startCursor, pageSize });
 
-  return NextResponse.json(response);
+  // 캐시 제어 헤더 추가
+  return NextResponse.json(response, {
+    headers: {
+      'Cache-Control': 'no-store, max-age=0',
+    },
+  });
 }

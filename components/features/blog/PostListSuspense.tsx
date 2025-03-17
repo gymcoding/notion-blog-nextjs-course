@@ -18,13 +18,16 @@ export default function PostList({ postsPromise }: PostListProps) {
   const searchParams = useSearchParams();
   const tag = searchParams.get('tag');
   const sort = searchParams.get('sort');
+  const pageSize = 2; // 페이지 크기 기본값
 
   const fetchPosts = async ({ pageParam }: { pageParam: string | undefined }) => {
     const params = new URLSearchParams();
     if (tag) params.set('tag', tag);
     if (sort) params.set('sort', sort);
     if (pageParam) params.set('startCursor', pageParam);
+    params.set('pageSize', String(pageSize));
 
+    console.log('클라이언트에서 포스트 요청:', Object.fromEntries(params.entries()));
     const response = await fetch(`/api/posts?${params.toString()}`);
     if (!response.ok) {
       throw new Error('Failed to fetch posts');
@@ -33,7 +36,7 @@ export default function PostList({ postsPromise }: PostListProps) {
   };
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: ['posts', tag, sort],
+    queryKey: ['posts', tag || '전체', sort || 'latest', pageSize],
     queryFn: fetchPosts,
     initialPageParam: undefined,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -41,6 +44,8 @@ export default function PostList({ postsPromise }: PostListProps) {
       pages: [initialData],
       pageParams: [undefined],
     },
+    staleTime: 60 * 1000, // 60초 동안 데이터를 신선한 상태로 유지
+    gcTime: 5 * 60 * 1000, // 5분 동안 캐시 유지
   });
 
   const { ref, inView } = useInView({

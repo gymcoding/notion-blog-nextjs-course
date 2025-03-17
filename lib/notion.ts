@@ -116,7 +116,7 @@ export const getPublishedPosts = unstable_cache(
     pageSize = 2,
     startCursor,
   }: GetPublishedPostsParams = {}): Promise<GetPublishedPostsResponse> => {
-    console.log('getPublishedPosts: ', tag, sort, pageSize, startCursor);
+    console.log('getPublishedPosts 호출:', tag, sort, pageSize, startCursor);
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
@@ -153,7 +153,7 @@ export const getPublishedPosts = unstable_cache(
       .filter((page): page is PageObjectResponse => 'properties' in page)
       .map(getPostMetadata);
 
-    console.log('posts: ', posts);
+    console.log('조회된 포스트:', posts.length);
 
     return {
       posts,
@@ -161,7 +161,7 @@ export const getPublishedPosts = unstable_cache(
       nextCursor: response.next_cursor,
     };
   },
-  ['posts'],
+  undefined,
   {
     tags: ['posts'],
   }
