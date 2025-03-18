@@ -18,12 +18,14 @@ export default function PostList({ postsPromise }: PostListProps) {
   const searchParams = useSearchParams();
   const tag = searchParams.get('tag');
   const sort = searchParams.get('sort');
+  const pageSize = 2;
 
   const fetchPosts = async ({ pageParam }: { pageParam: string | undefined }) => {
     const params = new URLSearchParams();
     if (tag) params.set('tag', tag);
     if (sort) params.set('sort', sort);
     if (pageParam) params.set('startCursor', pageParam);
+    params.set('pageSize', pageSize.toString());
 
     const response = await fetch(`/api/posts?${params.toString()}`);
     if (!response.ok) {
@@ -33,7 +35,7 @@ export default function PostList({ postsPromise }: PostListProps) {
   };
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: ['posts', tag, sort],
+    queryKey: ['posts', tag, sort, pageSize],
     queryFn: fetchPosts,
     initialPageParam: undefined,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
