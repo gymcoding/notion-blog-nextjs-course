@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 export default function Header() {
   return (
@@ -25,9 +24,9 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-2">
             <ThemeToggle />
-            <Button asChild size="sm" className="gap-2">
+            {/* <Button asChild size="sm" className="gap-2">
               <Link href="/blog/write">글쓰기</Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
