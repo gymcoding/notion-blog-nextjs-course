@@ -15,8 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-console.log('process.env.NEXT_PUBLIC_SITE_URL: ', process.env.NEXT_PUBLIC_SITE_URL);
-
 export const metadata: Metadata = {
   title: {
     template: '%s | 짐코딩 블로그',
