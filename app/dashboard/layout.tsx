@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 
 export default function DashboardLayout({
   children,
@@ -12,6 +13,10 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <div className="container flex flex-col gap-8 py-8">
+        <div className="flex gap-4">
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard/test">Dashboard Test</Link>
+        </div>
         <div>
           <Card className="p-6">{children}</Card>
         </div>
