@@ -43,8 +43,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
@@ -55,6 +57,9 @@ export default function RootLayout({
             <Header />
             {/* Main 영역 */}
             <main className="flex-1">{children}</main>
+
+            {/* Modal 영역 */}
+            {modal}
 
             {/* Footer 영역 */}
             <Footer />
