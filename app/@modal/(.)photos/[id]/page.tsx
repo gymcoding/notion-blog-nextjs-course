@@ -1,3 +1,5 @@
+'use client';
+
 import PhotoCard from '@/components/features/photo/PhotoCard';
 import {
   Dialog,
@@ -6,14 +8,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-interface PhotoPageProps {
-  params: Promise<{ id: string }>;
-}
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default async function PhotoPage({ params }: PhotoPageProps) {
-  const { id } = await params;
+export default function PhotoPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id') ?? '';
+  const handleOpenChange = (open: boolean) => {
+    if (!open) router.back();
+  };
+
   return (
-    <Dialog defaultOpen>
+    <Dialog defaultOpen onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Photo Card Dialog</DialogTitle>
