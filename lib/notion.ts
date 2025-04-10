@@ -188,7 +188,7 @@ export const getTags = async (): Promise<TagFilterItem[]> => {
   // "전체" 태그 추가
   tags.unshift({
     id: 'all',
-    name: '전체',
+    name: 'ALL',
     count: posts.length,
   });
 

@@ -7,18 +7,18 @@ export default function Header() {
         <div className="grid w-full grid-cols-3 items-center">
           <div className="flex items-center justify-start">
             <Link href="/" className="text-xl font-semibold">
-              <span className="font-bold">짐코딩 블로그</span>
+              <span className="font-bold">Blog</span>
             </Link>
           </div>
           <nav className="flex items-center justify-center gap-4">
             <Link href="/" className="hover:text-primary font-medium">
-              홈
+              Home
             </Link>
             <Link href="/blog" className="hover:text-primary font-medium">
-              블로그
+              Blog
             </Link>
             <Link href="/about" prefetch={false} className="hover:text-primary font-medium">
-              소개
+              About
             </Link>
           </nav>
 

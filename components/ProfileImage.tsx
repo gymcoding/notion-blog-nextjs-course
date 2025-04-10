@@ -7,7 +7,7 @@ export function ProfileImage() {
   return (
     <Image
       src={theme === 'light' ? '/images/profile-light.png' : '/images/profile-dark.png'}
-      alt="짐코딩"
+      alt="GYMCODING"
       width={144}
       height={144}
       className="object-cover"

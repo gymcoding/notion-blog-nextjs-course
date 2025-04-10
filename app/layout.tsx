@@ -17,14 +17,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | 짐코딩 블로그',
-    default: '짐코딩 블로그',
+    template: '%s | Blog',
+    default: 'Blog',
   },
   description: '프론트엔드 개발과 관련된 다양한 지식과 경험을 공유하는 블로그입니다.',
   keywords: ['Next.js', '프론트엔드', '웹개발', '코딩', '프로그래밍', '리액트'],
-  authors: [{ name: '짐코딩', url: 'https://github.com/gymcoding' }],
-  creator: '짐코딩',
-  publisher: '짐코딩',
+  authors: [{ name: 'GYMCODING', url: 'https://github.com/gymcoding' }],
+  creator: 'GYMCODING',
+  publisher: 'GYMCODING',
   formatDetection: {
     email: false,
     telephone: false,

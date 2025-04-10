@@ -34,7 +34,7 @@ export default function ProfileSection() {
           </div>
 
           <div className="text-center">
-            <h3 className="text-lg font-bold">짐코딩</h3>
+            <h3 className="text-lg font-bold">GYMCODING</h3>
             <p className="text-primary text-sm">Full Stack Developer</p>
           </div>
 
@@ -48,7 +48,9 @@ export default function ProfileSection() {
             ))}
           </div>
 
-          <p className="bg-primary/10 rounded p-2 text-center text-sm">코딩 교육 크리에이터 ✨</p>
+          <p className="bg-primary/10 rounded p-2 text-center text-sm">
+            Coding Education Creator ✨
+          </p>
         </div>
       </CardContent>
     </Card>

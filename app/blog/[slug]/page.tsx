@@ -35,10 +35,10 @@ export async function generateMetadata({
 
   return {
     title: post.title,
-    description: post.description || `${post.title} - 짐코딩 블로그`,
+    description: post.description || `${post.title} - Blog`,
     keywords: post.tags,
-    authors: [{ name: post.author || '짐코딩' }],
-    publisher: '짐코딩',
+    authors: [{ name: post.author || 'GYMCODING' }],
+    publisher: 'GYMCODING',
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
@@ -49,7 +49,7 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: post.date,
       modifiedTime: post.modifiedDate,
-      authors: post.author || '짐코딩',
+      authors: post.author || 'GYMCODING',
       tags: post.tags,
     },
   };

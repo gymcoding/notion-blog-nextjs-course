@@ -12,7 +12,7 @@ export default function TagSection({ tags, selectedTag }: TagSectionProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>태그 목록</CardTitle>
+        <CardTitle>Tags</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-3">

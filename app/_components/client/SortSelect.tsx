@@ -28,8 +28,8 @@ export default function SortSelect() {
         <SelectValue placeholder="정렬 방식 선택" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="latest">최신순</SelectItem>
-        <SelectItem value="oldest">오래된순</SelectItem>
+        <SelectItem value="latest">Latest</SelectItem>
+        <SelectItem value="oldest">Oldest</SelectItem>
       </SelectContent>
     </Select>
   );

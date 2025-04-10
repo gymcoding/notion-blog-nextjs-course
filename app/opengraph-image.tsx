@@ -32,7 +32,7 @@ export default function OgImage() {
             fontWeight: 'bold',
           }}
         >
-          짐코딩 블로그
+          Blog
         </div>
         <div
           style={{

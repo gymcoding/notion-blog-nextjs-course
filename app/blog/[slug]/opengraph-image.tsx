@@ -72,7 +72,7 @@ export default async function OgImage({ params }: { params: { slug: string } }) 
               marginBottom: 20,
             }}
           >
-            짐코딩 블로그
+            Blog
           </div>
           <div
             style={{

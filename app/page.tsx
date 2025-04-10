@@ -15,7 +15,7 @@ interface HomeProps {
 
 export const metadata: Metadata = {
   title: '홈',
-  description: '프론트엔드 개발자 짐코딩의 블로그입니다. 개발 지식과 경험을 공유합니다.',
+  description: '프론트엔드 개발자 GYMCODING의 블로그입니다. 개발 지식과 경험을 공유합니다.',
   alternates: {
     canonical: '/',
   },
